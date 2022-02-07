@@ -48,7 +48,6 @@ public class colorThreshholding implements PixelFilter {
                 }
             }
         }
-        // Ok
 
         return output;
     }
