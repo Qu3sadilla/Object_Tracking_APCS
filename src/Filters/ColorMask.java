@@ -24,7 +24,7 @@ public class ColorMask implements PixelFilter {
         img.setColorChannels(red, green, blue);
         return img;
     }
-
+//
     private void trackRed(short[][] red, short[][] green, short[][] blue) {
         for (int r = 0; r < red.length; r++) {
             for (int c = 0; c < red[0].length; c++) {
