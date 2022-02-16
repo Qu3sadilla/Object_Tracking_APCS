@@ -20,8 +20,7 @@ public class csvFile implements PixelFilter {
     public static void writeDataToFile(String filePath, String data) {
         try (FileWriter f = new FileWriter(filePath);
              BufferedWriter b = new BufferedWriter(f);
-             PrintWriter writer = new PrintWriter(b);) {
-
+             PrintWriter writer = new PrintWriter(b))  {
 
             writer.println(data);
 
