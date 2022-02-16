@@ -12,6 +12,9 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class csvFile implements PixelFilter {
+
+    private static double[] fake_data = {42.3,56.1,784.0};
+
     public static void main(String[] args) throws IOException {
         writeDataToFile("centers", FindCenter.data);
         System.out.println(readFile("centers.txt"));
@@ -23,7 +26,7 @@ public class csvFile implements PixelFilter {
              PrintWriter writer = new PrintWriter(b);) {
 
 
-            writer.println(data);
+            writer.println(fake_data);
 
 
         } catch (IOException error) {

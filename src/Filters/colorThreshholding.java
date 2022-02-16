@@ -60,4 +60,9 @@ public class colorThreshholding implements PixelFilter {
 
         return false;
     }
+
+
+//    public Boolean Output(short red, short green, short blue){
+//
+//    }
 }
