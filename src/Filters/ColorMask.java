@@ -11,38 +11,78 @@ public class ColorMask implements PixelFilter {
 
     @Override
     public DImage processImage(DImage img) {
-        int targetRed = Integer.parseInt(JOptionPane.showInputDialog("Enter red target color (0-255) "));
-        int targetGreen = Integer.parseInt(JOptionPane.showInputDialog("Enter red target color (0-255) "));
-        int targetBlue = Integer.parseInt(JOptionPane.showInputDialog("Enter red target color (0-255) "));
-        double threshold = Double.parseDouble(JOptionPane.showInputDialog("Enter threshold from 0 to 442"));
-
         short[][] red = img.getRedChannel();
-        short[][] blue = img.getBlueChannel();
         short[][] green = img.getGreenChannel();
+        short[][] blue = img.getBlueChannel();
+        /*for (int r = 0; r < img.getHeight(); r++) {       //takes all red out
+            for (int c = 0; c < img.getWidth(); c++) {
+                if(computeColorDistance(255,0,0,));
+            }
+        }*/
+        trackRed(red,green,blue);
 
-        int height = blue.length;
-        int width = blue[0].length;
-        double colorDist;
+        img.setColorChannels(red, green, blue);
+        return img;
+    }
 
-        short[][] newImage = new short[height][width];
-
-        for (int r = 0; r < height; r++) {
-            for (int c = 0; c < width; c++) {
-                colorDist = computerColorDistance(targetRed, targetBlue, targetGreen, red[r][c], green[r][c], blue[r][c]);
-                if (colorDist < threshold) {
-                    newImage[r][c] = WHITE;
-                } else {
-                    newImage[r][c] = BLACK;
+    private void trackRed(short[][] red, short[][] green, short[][] blue) {
+        for (int r = 0; r < red.length; r++) {
+            for (int c = 0; c < red[0].length; c++) {
+                if(computeColorDistance(168,44,42,red[r][c],blue[r][c],green[r][c])<50){
+                    red[r][c] = WHITE;
+                    green[r][c] = WHITE;
+                    blue[r][c] = WHITE;
+                } else{
+                    red[r][c] = BLACK;
+                    green[r][c] = BLACK;
+                    blue[r][c] = BLACK;
                 }
             }
-        }
-        img.setColorChannels(red, green, blue);
-        return img;    }
 
-    private double computerColorDistance(int targetRed, int targetBlue, int targetGreen, short r, short g, short b) {
+        }
+    }
+    private void trackBlue(short[][] red, short[][] green, short[][] blue) {
+        for (int r = 0; r < blue.length; r++) {
+            for (int c = 0; c < blue[0].length; c++) {
+                if(computeColorDistance(33,34,98,red[r][c],blue[r][c],green[r][c])<50){
+                    red[r][c] = WHITE;
+                    green[r][c] = WHITE;
+                    blue[r][c] = WHITE;
+                } else{
+                    red[r][c] = BLACK;
+                    green[r][c] = BLACK;
+                    blue[r][c] = BLACK;
+                }
+            }
+
+        }
+    }
+    private void trackGreen(short[][] red, short[][] green, short[][] blue) {
+        for (int r = 0; r < red.length; r++) {
+            for (int c = 0; c < red[0].length; c++) {
+                if(computeColorDistance(52,98,59,red[r][c],blue[r][c],green[r][c])<50){
+                    red[r][c] = WHITE;
+                    green[r][c] = WHITE;
+                    blue[r][c] = WHITE;
+                } else{
+                    red[r][c] = BLACK;
+                    green[r][c] = BLACK;
+                    blue[r][c] = BLACK;
+                }
+            }
+
+        }
+    }
+
+    private double computeColorDistance(int targetRed, int targetBlue, int targetGreen, short r, short g, short b) {
         int differenceRed = targetRed - r;
         int differenceGreen = targetGreen - g;
         int differenceBlue = targetBlue - b;
         return Math.sqrt(differenceRed*differenceRed+differenceGreen*differenceGreen+differenceBlue*differenceBlue);
+    }
+    private double colorDistance(int targetRed,short r) {
+        int differenceRed = targetRed - r;
+
+        return Math.sqrt(differenceRed*differenceRed);
     }
 }
