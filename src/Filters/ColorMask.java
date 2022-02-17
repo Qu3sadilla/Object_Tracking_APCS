@@ -73,6 +73,7 @@ public class ColorMask implements PixelFilter {
 
         }
     }
+    //
     private void trackAll(short[][] red, short[][] green, short[][] blue) {
         for (int r = 0; r < red.length; r++) {
             for (int c = 0; c < red[0].length; c++) {
