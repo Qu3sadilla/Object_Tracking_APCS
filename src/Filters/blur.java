@@ -7,7 +7,7 @@ public class blur implements PixelFilter {
 
     public DImage processImage(DImage img) {
 
-        // Written by Jacob Nixon 02/2022
+
 
         short[][] red = img.getRedChannel();
         short[][] green = img.getGreenChannel();
