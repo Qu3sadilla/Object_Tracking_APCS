@@ -20,13 +20,9 @@ public class ColorMask implements PixelFilter {
             }
         }*/
 
-        red = blur(red);
-        green = blur(green);
-        blue = blur(blue);
-
         trackRed(red, green, blue);
-        trackBlue(red, green, blue);
-        trackGreen(red, green, blue);
+//        trackBlue(red, green, blue);
+//        trackGreen(red, green, blue);
 
         img.setColorChannels(red, green, blue);
         return img;
