@@ -12,7 +12,7 @@ public class Pipeline implements PixelFilter, Drawable {
     ArrayList<PixelFilter> filters = new ArrayList<>();
 
     public Pipeline() {
-        PixelFilter outline = new blur();
+        PixelFilter outline = new blur2();
         PixelFilter colorMask = new ColorMask();
 
         filters.add(outline);
