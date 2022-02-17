@@ -19,7 +19,7 @@ public class ColorMask implements PixelFilter {
                 if(computeColorDistance(255,0,0,));
             }
         }*/
-        trackRed(red,green,blue);
+        trackAll(red,green,blue);
 
         img.setColorChannels(red, green, blue);
         return img;
@@ -58,13 +58,37 @@ public class ColorMask implements PixelFilter {
         }
     }
     private void trackGreen(short[][] red, short[][] green, short[][] blue) {
-        for (int r = 0; r < red.length; r++) {
-            for (int c = 0; c < red[0].length; c++) {
+        for (int r = 0; r < green.length; r++) {
+            for (int c = 0; c < green[0].length; c++) {
                 if(computeColorDistance(52,98,59,red[r][c],blue[r][c],green[r][c])<50){
                     red[r][c] = WHITE;
                     green[r][c] = WHITE;
                     blue[r][c] = WHITE;
                 } else{
+                    red[r][c] = BLACK;
+                    green[r][c] = BLACK;
+                    blue[r][c] = BLACK;
+                }
+            }
+
+        }
+    }
+    private void trackAll(short[][] red, short[][] green, short[][] blue) {
+        for (int r = 0; r < red.length; r++) {
+            for (int c = 0; c < red[0].length; c++) {
+                if(computeColorDistance(168,44,42,red[r][c],blue[r][c],green[r][c])<40){
+                    red[r][c] = WHITE;
+                    green[r][c] = WHITE;
+                    blue[r][c] = WHITE;
+                }else if(computeColorDistance(33,34,98,red[r][c],blue[r][c],green[r][c])<40){
+                    red[r][c] = WHITE;
+                    green[r][c] = WHITE;
+                    blue[r][c] = WHITE;
+                }else if(computeColorDistance(52,98,59,red[r][c],blue[r][c],green[r][c])<40){
+                    red[r][c] = WHITE;
+                    green[r][c] = WHITE;
+                    blue[r][c] = WHITE;
+                }else{
                     red[r][c] = BLACK;
                     green[r][c] = BLACK;
                     blue[r][c] = BLACK;
