@@ -77,15 +77,15 @@ public class ColorMask implements PixelFilter {
     private void trackAll(short[][] red, short[][] green, short[][] blue) {
         for (int r = 0; r < red.length; r++) {
             for (int c = 0; c < red[0].length; c++) {
-                if(computeColorDistance(168,44,42,red[r][c],blue[r][c],green[r][c])<25){
+                if(computeColorDistance(168,44,42,red[r][c],blue[r][c],green[r][c])<30){
                     red[r][c] = WHITE;
                     green[r][c] = WHITE;
                     blue[r][c] = WHITE;
-                }else if(computeColorDistance(33,34,98,red[r][c],blue[r][c],green[r][c])<25){
+                }else if(computeColorDistance(33,34,98,red[r][c],blue[r][c],green[r][c])<30){
                     red[r][c] = WHITE;
                     green[r][c] = WHITE;
                     blue[r][c] = WHITE;
-                }else if(computeColorDistance(52,98,59,red[r][c],blue[r][c],green[r][c])<25){
+                }else if(computeColorDistance(52,98,59,red[r][c],blue[r][c],green[r][c])<30){
                     red[r][c] = WHITE;
                     green[r][c] = WHITE;
                     blue[r][c] = WHITE;

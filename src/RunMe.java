@@ -6,7 +6,7 @@ public class RunMe {
         DisplayWindow.showFor("images/all.jpg", 800, 600);
 
         // --== Determine your input interactively with menus ==--
-        //DisplayWindow.getInputInteractively(800,600);
+        DisplayWindow.getInputInteractively(800,600);
         //yer
     }
 }
