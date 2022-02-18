@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class klustering implements PixelFilter {
 
     private int num = 0;
+    private center[] centers = new center[3];
 
     public DImage processImage(DImage img) {
 
@@ -17,7 +18,6 @@ public class klustering implements PixelFilter {
 
         short[][] pixels = img.getBWPixelGrid();
         ArrayList<point> points;
-        center[] centers = new center[3];
 
         //Initialize centers
 
@@ -38,7 +38,9 @@ public class klustering implements PixelFilter {
 
         points = findHighlighted(pixels);
 
-        centers = placeCenters(points, centers);
+        centers = makePointLists(points, centers);
+
+        placeCenters(centers);
 
         for (int i = 0; i < centers.length; i++) {
             System.out.println(centers[i].getX() + ", " + centers[i].getY());
@@ -47,7 +49,7 @@ public class klustering implements PixelFilter {
         return img;
     }
 
-    public center[] placeCenters(ArrayList<point> points, center[] centers){
+    public center[] makePointLists(ArrayList<point> points, center[] centers){
 
         for (point p : points) {
             float[] distances = new float[centers.length];
@@ -80,6 +82,25 @@ public class klustering implements PixelFilter {
         }
 
         return centers;
+    }
+
+    private void placeCenters(center[] centers){
+        for (int i = 0; i < centers.length; i++) {
+            double sumX = 0;
+            double sumY = 0;
+            ArrayList<point> pointList = centers[i].getPointsList();
+
+            for (int j = 0; j < pointList.size(); j++) {
+                sumX += pointList.get(j).getX();
+                sumY += pointList.get(j).getY();
+            }
+
+            int Xloc = (int) (sumX/ pointList.size());
+            int Yloc = (int) (sumY/ pointList.size());
+
+            centers[i].setX(Xloc);
+            centers[i].setY(Yloc);
+        }
     }
 
     private ArrayList<point> findHighlighted(short[][] input){

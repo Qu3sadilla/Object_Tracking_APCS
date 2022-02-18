@@ -19,6 +19,10 @@ public class center {
         }
     }
 
+    public ArrayList<point> getPointsList(){
+        return points;
+    }
+
     public void addPoint(point p){
         points.add(p);
     }
@@ -37,5 +41,13 @@ public class center {
 
     public int getY(){
         return y;
+    }
+
+    public void setX(int loc){
+        x = loc;
+    }
+
+    public void setY(int loc){
+        y = loc;
     }
 }
