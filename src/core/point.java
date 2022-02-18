@@ -10,11 +10,11 @@ public class point {
         y = yIn;
     }
 
-    public int getPointX(){
+    public int getX(){
         return x;
     }
 
-    public int getPointY(){
+    public int getY(){
         return y;
     }
 }

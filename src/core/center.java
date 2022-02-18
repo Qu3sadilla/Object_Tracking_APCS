@@ -1,10 +1,12 @@
 package core;
 
+import java.util.ArrayList;
+
 public class center {
 
     int x;
     int y;
-    point[] points;
+    ArrayList<point> points = new ArrayList<point>();
 
     public center(int xlocation, int ylocation){
         x = xlocation;
@@ -13,11 +15,15 @@ public class center {
 
     public void setPointsList(point[] list){
         for (int i = 0; i < list.length; i++) {
-            points = list;
+            points.add(list[i]);
         }
     }
 
-    public point[] getClusterPoints(){
+    public void addPoint(point p){
+        points.add(p);
+    }
+
+    public ArrayList<point> getClusterPoints(){
         if(points != null){
             return points;
         }else{
@@ -25,11 +31,11 @@ public class center {
         }
     }
 
-    public int getCenterX(){
+    public int getX(){
         return x;
     }
 
-    public int getCenterY(){
+    public int getY(){
         return y;
     }
 }

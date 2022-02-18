@@ -14,9 +14,11 @@ public class Pipeline implements PixelFilter, Drawable {
     public Pipeline() {
         PixelFilter outline = new blur();
         PixelFilter colorMask = new ColorMask();
+        PixelFilter klustering = new klustering();
 
         filters.add(outline);
         filters.add(colorMask);
+        filters.add(klustering);
 
 
     }
@@ -30,6 +32,5 @@ public class Pipeline implements PixelFilter, Drawable {
 
     @Override
     public void drawOverlay(PApplet window, DImage original, DImage filtered) {
-
     }
 }
