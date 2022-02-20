@@ -42,9 +42,16 @@ public class klustering implements PixelFilter {
 
         placeCenters(centers);
 
-        for (int i = 0; i < centers.length; i++) {
-            System.out.println(centers[i].getX() + ", " + centers[i].getY());
+        if(num == 1) {
+            for (int i = 0; i < centers.length; i++) {
+                System.out.println(centers[i].getX() + ", " + centers[i].getY());
+            }
         }
+        num++;
+        if(num >= 1000){
+            num = 1;
+        }
+
 
         return img;
     }
@@ -90,13 +97,15 @@ public class klustering implements PixelFilter {
             double sumY = 0;
             ArrayList<point> pointList = centers[i].getPointsList();
 
+            double size = pointList.size();
+
             for (int j = 0; j < pointList.size(); j++) {
                 sumX += pointList.get(j).getX();
                 sumY += pointList.get(j).getY();
             }
 
-            int Xloc = (int) (sumX/ pointList.size());
-            int Yloc = (int) (sumY/ pointList.size());
+            int Xloc = (int) (sumX/ size);
+            int Yloc = (int) (sumY/ size);
 
             centers[i].setX(Xloc);
             centers[i].setY(Yloc);
