@@ -32,19 +32,15 @@ public class klustering implements PixelFilter {
             num++;
         }
 
-//        for (int i = 0; i < centers.length; i++) {
-//            System.out.println(centers[i].getX() + ", " + centers[i].getY());
-//        }
-
-        points = findHighlighted(pixels);
+        points = findPoints(pixels);
 
         centers = makePointLists(points, centers);
 
         placeCenters(centers);
 
         if(num == 1) {
-            for (int i = 0; i < centers.length; i++) {
-                System.out.println(centers[i].getX() + ", " + centers[i].getY());
+            for (core.center center : centers) {
+                System.out.println(center.getX() + ", " + center.getY());
             }
         }
         num++;
@@ -92,37 +88,50 @@ public class klustering implements PixelFilter {
     }
 
     private void placeCenters(center[] centers){
-        for (int i = 0; i < centers.length; i++) {
+        for (core.center center : centers) {
             double sumX = 0;
             double sumY = 0;
-            ArrayList<point> pointList = centers[i].getPointsList();
+            ArrayList<point> pointList = center.getPointsList();
 
             double size = pointList.size();
 
-            for (int j = 0; j < pointList.size(); j++) {
-                sumX += pointList.get(j).getX();
-                sumY += pointList.get(j).getY();
+            for (core.point point : pointList) {
+                sumX += point.getX();
+                sumY += point.getY();
             }
 
-            int Xloc = (int) (sumX/ size);
-            int Yloc = (int) (sumY/ size);
+            int Xloc = (int) (sumX / size);
+            int Yloc = (int) (sumY / size);
 
-            centers[i].setX(Xloc);
-            centers[i].setY(Yloc);
+            center.setX(Xloc);
+            center.setY(Yloc);
         }
     }
 
-    private ArrayList<point> findHighlighted(short[][] input){
-        ArrayList<point> points = new ArrayList<point>();
-        for (int row = 0; row < input.length; row++) {
-            for (int col = 0; col < input[0].length; col++) {
+    private ArrayList<point> findPoints(short[][] input){
+        ArrayList<point> points = new ArrayList<>();
+        for (int row = 0; row < input.length - 2; row += 3) {
+            for (int col = 0; col < input[0].length - 2; col += 3) {
                 if (input[row][col] == 255){
-                    point p = new point(row,col);
-                    points.add(p);
+                    if(isPoint(input,col,row)) {
+                        point p = new point(row, col);
+                        points.add(p);
+                    }
                 }
             }
         }
         return points;
+    }
+
+    private boolean isPoint(short[][] input, int x, int y){
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 3; col++) {
+                if (input[row+y][col+x] != 255){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
 

@@ -107,9 +107,9 @@ public class blur implements PixelFilter {
 
     private double getKernelSum(double[][] kernel) {
         double sum = 0;
-        for (int i = 0; i < kernel.length; i++) {
+        for (double[] doubles : kernel) {
             for (int j = 0; j < kernel[0].length; j++) {
-                sum += kernel[i][j];
+                sum += doubles[j];
             }
         }
         return sum;

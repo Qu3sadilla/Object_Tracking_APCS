@@ -6,17 +6,11 @@ public class center {
 
     int x;
     int y;
-    ArrayList<point> points = new ArrayList<point>();
+    ArrayList<point> points = new ArrayList<>();
 
     public center(int xlocation, int ylocation){
         x = xlocation;
         y = ylocation;
-    }
-
-    public void setPointsList(point[] list){
-        for (int i = 0; i < list.length; i++) {
-            points.add(list[i]);
-        }
     }
 
     public ArrayList<point> getPointsList(){
@@ -27,13 +21,6 @@ public class center {
         points.add(p);
     }
 
-    public ArrayList<point> getClusterPoints(){
-        if(points != null){
-            return points;
-        }else{
-            return null;
-        }
-    }
 
     public int getX(){
         return x;

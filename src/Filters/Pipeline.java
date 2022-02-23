@@ -5,8 +5,8 @@ import Interfaces.PixelFilter;
 import core.DImage;
 import processing.core.PApplet;
 
-import java.nio.channels.Pipe;
 import java.util.ArrayList;
+
 //
 public class Pipeline implements PixelFilter, Drawable {
     ArrayList<PixelFilter> filters = new ArrayList<>();
